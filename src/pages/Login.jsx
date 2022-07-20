@@ -1,10 +1,12 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { login, logout } from '../features/auth'
+import { login } from '../features/auth/extraReducers'
+// import { api } from '../api/query'
 
 export default function Login() {
     const state = useSelector((state)=>{return state.auth}) //Leer el estado
     const dispatch = useDispatch() // Funcion para actualizar el estado
+    // const [login, {isError,isLoading,isSuccess}] = api.useLoginMutation() 
 
     const handleLogin = async (event)=>{
         event.preventDefault()
@@ -16,6 +18,16 @@ export default function Login() {
             password:password.value
         }))
     }
+
+    // const handleLogin = (event)=>{
+    //     event.preventDefault()
+    //     const {email,password} = event.target
+    //     login({
+    //         email: email.value,
+    //         password: password.value
+    //     })
+    // }
+
     // const handleLogin = async (event)=>{
     //     event.preventDefault()
     //     // login(payload)
@@ -32,10 +44,7 @@ export default function Login() {
     //         console.log(error)
     //     }
     // }
-    const handleLogout = ()=>{
-        // Nota: Si no usamos el payload, no es necesario pasarlo
-        dispatch(logout())
-    }
+    
     return (
         <>
             <div>Login</div>
@@ -46,6 +55,10 @@ export default function Login() {
                 <input type="password" name="password" placeholder='Password...'/>
                 <button>Log in</button>
             </form>
+
+            {/* {isLoading&&<p>Loading....</p>}
+            {isError&&<p>Error....</p>}
+            {isSuccess&&<p>Success....</p>} */}
         </>
     )
 }

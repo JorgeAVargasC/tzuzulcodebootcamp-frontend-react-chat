@@ -1,25 +1,18 @@
 import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 import { baseURL } from '../config'
+// import products from './products'
+// import auth from './auth'
+import usersEndpoints from './users'
+import chatsEndpoints from './chats'
 
-const api = createApi({
+export const api = createApi({
     reducerPath: 'api',
-    baseQuery: fetchBaseQuery({baseUrl:baseURL}),
+    baseQuery: fetchBaseQuery({
+      baseUrl:baseURL,
+      credentials:"include"
+    }),
     endpoints:(builder)=>({
-        getProducts: builder.query({
-            query: ()=>"/api/products"
-        })
+        ...usersEndpoints(builder),
+        ...chatsEndpoints(builder),
     })
 })
-
-export const pokemonApi = createApi({
-    reducerPath: 'pokemonApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://pokeapi.co/api/v2/' }),
-    endpoints: (builder) => ({
-      getPokemonByName: builder.query({
-        query: (name) => `pokemon/${name}`,
-      }),
-    }),
-})
-
-// export default pokemonApi
-export const {useGetPokemonByNameQuery} = pokemonApi
