@@ -14,10 +14,15 @@ export default function Navbar() {
         dispatch(logout())
     }
     return (
-        <nav>
-            <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/login">Login</Link></li>
+        <nav className='fixed bg-gray-800 w-full flex flex-col items-center'>
+            <ul className='flex justify-between items-center w-11/12 h-10'>
+                <li><h2>AppChat</h2></li>
+                <li><input className='bg-gray-800 border border-gray-600 rounded h-8 outline-none px-2' placeholder='Search...' type="text" /></li>
+                <li><h2>Usuario</h2></li>
+            </ul>
+            <ul className='flex w-full h-10'> 
+                <li className='w-full'><Link className='h-full border-b-2 flex justify-center items-center w-full' to="/">Home</Link></li>
+                <li className='w-full'><Link className='h-full flex justify-center items-center w-full' to="/login">Login</Link></li>
                 {logged&&<>
                     <li onClick={handleLogout}>{user.name}</li>
                     <li><Link to="/users">Users</Link></li>

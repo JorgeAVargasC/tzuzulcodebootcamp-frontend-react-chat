@@ -1,4 +1,4 @@
-import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Login from './pages/Login'
 import Home from './pages/Home'
 import Navbar from './components/Navbar';
@@ -11,24 +11,26 @@ import Chat from './pages/Chat';
 
 function App() {
 
-  const dispatch = useDispatch()
+	const dispatch = useDispatch()
 
-  useEffect(()=>{
-      dispatch(validate())
-  },[])
+	useEffect(() => {
+		dispatch(validate())
+	}, [])
 
-  return (
-    <BrowserRouter>
-      <Navbar/>
-      <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/users' element={<Users/>}/>
-        <Route path='/chats' element={<Chats/>}/>
-        <Route path='/chats/:id' element={<Chat/>}/>
-      </Routes>
-    </BrowserRouter>
-  );
+	return (
+		<div className='bg-gray-900 text-white min-h-screen flex flex-col items-center'>
+			<Router>
+				<Navbar />
+				<Routes>
+					<Route path='/' element={<Home />} />
+					<Route path='/login' element={<Login />} />
+					<Route path='/users' element={<Users />} />
+					<Route path='/chats' element={<Chats />} />
+					<Route path='/chats/:id' element={<Chat />} />
+				</Routes>
+			</Router>
+		</div>
+	);
 }
 
 export default App;

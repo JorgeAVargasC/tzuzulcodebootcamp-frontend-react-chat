@@ -6,7 +6,8 @@ export default function Chats() {
     const {data:chats} = api.useGetChatsQuery()
     const {id} = useSelector(state=>state.auth.user)
     return (
-        <div>
+        <div className='w-11/12 bg-green-800 min-h-screen mt-32'>
+            <h2>Chats</h2>
             {chats?.map(chat=><article key={chat._id}>
                 <Link to={"/chats/"+chat._id}>
                     {chat.idUserOne===id?
